@@ -19,7 +19,8 @@ In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor 
 # Illustration
 
 Illustration of the time-series chain graphs underlying the various vector autoregressive models, estimated by means of ridge penalized maximum likelihood.
-Models.jpeg![Models](https://user-images.githubusercontent.com/22052679/124133786-79437600-da82-11eb-878c-bf6405d1b4c7.jpeg){:height="36px" width="36px"}
+
+Models.jpeg![Models](https://user-images.githubusercontent.com/22052679/124133786-79437600-da82-11eb-878c-bf6405d1b4c7.jpeg){:height="26px" width="26px"}
 
 
 
