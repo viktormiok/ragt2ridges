@@ -11,7 +11,7 @@ In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor 
 # Illustration
 
 Illustration of the time-series chain graphs underlying the various vector autoregressive models, estimated by means of ridge penalized maximum likelihood.
-
+https://onlinelibrary.wiley.com/doi/full/10.1002/bimj.201700195
 ### VAR(1)
 This technique aims to unravel the dynamic interrelatedness of the variates (e.g., mRNA genes) of a single molecular level (e.g., mRNA gene expression). The model thus explicates the temporal dependencies among the genes, but also captures the contemporaneous ones (through the inverse of the error covariance matrix).
 ### VAR(2)
