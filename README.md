@@ -1,6 +1,14 @@
 # ragt2ridges
 
-This repository contains code, benchmarking study and illustration analysis for the R-package ragt2ridges that performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2) and VARX(1) models.
+This repository contains code, benchmarking study and illustration analysis for the R-package ragt2ridges.
+
+that performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2) and VARX(1) models.
+# Code
+
+First, the VAR(1) model and its properties along with its associated time-series chain graph are recapitulated. With this knowledge refreshed, the ridge penalized full ML estimator of the VAR(1) model is presented. The estimator is extended to allow the incorporation of prior knowledge on the support of both temporal and contemporaneous interactions. In both cases memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. Then, several strategies (e.g. selection of temporal and contemporaneous relationships, mutual information, and path analysis) for down-stream exploitation of the estimated model are discussed. 
+
+The R-package ragt2ridges performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2), fused VAR(1) and VARX(1). The estimiator is extended to allow the incorporation of prior knowledge on the support of both temporal and contemporaneous interactions. In both cases memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. 
+In addition, the package offers supporting functionality for the exploitation of estimated models. Among others, i) a procedure to infer the support of the non-sparse ridge estimate is implemented, a table of node-wise network summary statistics, path analysis, mutual information analysis, and impulse response analysis.
 
 # Benchmarking 
 
@@ -11,7 +19,8 @@ In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor 
 # Illustration
 
 Illustration of the time-series chain graphs underlying the various vector autoregressive models, estimated by means of ridge penalized maximum likelihood.
-bimj1913-fig-0001-m.jpeg![bimj1913-fig-0001-m](https://user-images.githubusercontent.com/22052679/124127855-8198b280-da7c-11eb-89fe-61e23a9e5f50.jpeg)
+Models.jpeg![Models](https://user-images.githubusercontent.com/22052679/124133786-79437600-da82-11eb-878c-bf6405d1b4c7.jpeg){:height="36px" width="36px"}
+
 
 
 ### VAR(1)
