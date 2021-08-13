@@ -2,7 +2,6 @@
 
 This repository contains code, benchmarking study and illustration analysis for the R-package ragt2ridges.
 
-that performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2) and VARX(1) models.
 # Code
 
 First, the VAR(1) model and its properties along with its associated time-series chain graph are recapitulated. With this knowledge refreshed, the ridge penalized full ML estimator of the VAR(1) model is presented. The estimator is extended to allow the incorporation of prior knowledge on the support of both temporal and contemporaneous interactions. In both cases memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. Then, several strategies (e.g. selection of temporal and contemporaneous relationships, mutual information, and path analysis) for down-stream exploitation of the estimated model are discussed. 
@@ -47,3 +46,5 @@ Publications related to ```ragt2ridges``` include:
  - van Wieringen, W.N. (2018), 
    "ragt2ridges: Ridge Estimation of Vector Auto-Regressive (VAR) Processes". 
     _R package_, version 0.3.2
+
+Please cite the relevant publications if you use ```tigaR```.
