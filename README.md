@@ -47,4 +47,4 @@ Publications related to ```ragt2ridges``` include:
    "ragt2ridges: Ridge Estimation of Vector Auto-Regressive (VAR) Processes". 
     _R package_, version 0.3.2
 
-Please cite the relevant publications if you use ```tigaR```.
+Please cite the relevant publications if you use ```ragt2ridges```.
