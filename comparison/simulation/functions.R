@@ -37,21 +37,23 @@ loglikLOOCVVAR1sim <- function(lambdas, Y, penalty = "ridge", ...) {
     if (any(lambdas < 0)) {
         stop("Input (lambdas) is not a vector of non-negative numbers.")
     }
-    loglik <- 0
+    loglik = 0
     if (penalty == "ridge") {
         for (k in 1:dim(Y)[3]) {
-            VAR1hat <- ridgeVAR1(Y[, , -k], lambdas[1], lambdas[2], ...)
+            VAR1hat <- ridgeVAR1(Y[, , -k], 
+                                 lambdas[1],
+                                 lambdas[2], ...)
             for (l in 2:dim(Y)[2]) {
-                res <- Y[, l, k] - VAR1hat$A %*% Y[, l - 1, k]
-                loglik <- loglik - t(res) %*% VAR1hat$P %*% res/2 + log(det(VAR1hat$P))/2
+                res = Y[, l, k] - VAR1hat$A %*% Y[, l - 1, k]
+                loglik = loglik - t(res) %*% VAR1hat$P %*% res/2 + log(det(VAR1hat$P))/2
             }
         }
         return(-loglik)
     }
     if (penalty == "scad") {
         for (k in 1:dim(Y)[3]) {
-            Ylaso <- array2longitudinal(Y[, , -k])
-            Ylaso1 <- as.longitudinal(Ylaso, repeats = dim(Y)[3] - 1)  #
+            Ylaso = array2longitudinal(Y[, , -k])
+            Ylaso1 = as.longitudinal(Ylaso, repeats = dim(Y)[3] - 1)  #
             VAR1hat <- sparse.tscgm(data=Ylaso1,
                                     lam1=lambdas[1], 
                                     lam2=lambdas[2], 
@@ -60,11 +62,11 @@ loglikLOOCVVAR1sim <- function(lambdas, Y, penalty = "ridge", ...) {
                                     control=list(maxit.out=5, 
                                                  maxit.in = 10)
             )
-            Omega <- VAR1hat$theta
+            Omega = VAR1hat$theta
             
             for (l in 2:dim(Y)[2]) {
-                res <- Y[, l, k] - t(VAR1hat$gamma) %*% Y[, l - 1, k]  #as.numeric(determinant(Omega,logarithm=TRUE)$modulus)/2
-                loglik <- loglik - t(res) %*% Omega %*% res/2 + log(det(Omega))/2
+                res = Y[, l, k] - t(VAR1hat$gamma) %*% Y[, l - 1, k]  #as.numeric(determinant(Omega,logarithm=TRUE)$modulus)/2
+                loglik = loglik - t(res) %*% Omega %*% res/2 + log(det(Omega))/2
             }
         }
         return(-loglik)
@@ -137,8 +139,8 @@ simDataGen <- function(p=25,
         data(hpvP53)
         Y <- longitudinal2array(t(exprs(hpvP53)))[1:p, , ]
         VAR1hat <- ridgeVAR1(Y, 0.3, 0.1)  #100,0.0024
-        trueA <- VAR1hat$A
-        trueP <- VAR1hat$P
+        trueA = VAR1hat$A
+        trueP = VAR1hat$P
     }
     return(list(A=trueA, P=trueP))
 }
@@ -270,46 +272,46 @@ createA <- function (p,
     if (as.character(class(stationary)) != "logical") {
         stop("Input (stationary) is of wrong class.")
     }
-    again <- TRUE
+    again = TRUE
     while (again) {
         if (nonzeroA == 0) {
-            nonzeroA <- runif(1, -1, 1)
+            nonzeroA = runif(1, -1, 1)
         }
         if (topology == "chain") {
-            diags <- list()
+            diags = list()
             for (d in 0:nBands) {
-                diags[[d + 1]] <- rep(nonzeroA, p - d)
+                diags[[d + 1]] = rep(nonzeroA, p - d)
             }
-            A <- as.matrix(bandSparse(p, k = -c(0:nBands), diagonals=diags,
+            A = as.matrix(bandSparse(p, k = -c(0:nBands), diagonals=diags,
                 symmetric=FALSE))
         }
         if (topology == "hub") {
             if (p%%nHubs == 0) {
-                hubIDs <- 1 + p/nHubs * c(0:(nHubs - 1))
+                hubIDs = 1 + p/nHubs * c(0:(nHubs - 1))
             }
             else {
-                hubIDs <- 1 + floor(p/nHubs) * c(0:(nHubs - 1))
+                hubIDs = 1 + floor(p/nHubs) * c(0:(nHubs - 1))
             }
-            A <- matrix(0, p, p)
-            A[, hubIDs] <- nonzeroA
-            A[upper.tri(A)] <- 0
+            A = matrix(0, p, p)
+            A[, hubIDs] = nonzeroA
+            A[upper.tri(A)] = 0
         }
         if (topology == "clique") {
             if (p%%nCliques == 0) {
-                cliqueSizes <- rep(p/nCliques, nCliques)
+                cliqueSizes = rep(p/nCliques, nCliques)
             }
             else {
-                cliqueSizes <- rep(floor(p/nCliques), nCliques)
-                cliqueSizes[nCliques] <- cliqueSizes[nCliques] +
+                cliqueSizes = rep(floor(p/nCliques), nCliques)
+                cliqueSizes[nCliques] = cliqueSizes[nCliques] +
                   p%%nCliques
             }
-            A <- as.matrix(bdiag(lapply(cliqueSizes, function(x) {
+            A = as.matrix(bdiag(lapply(cliqueSizes, function(x) {
                 matrix(nonzeroA, x, x)
             })))
-            A[upper.tri(A)] <- 0
+            A[upper.tri(A)] = 0
         }
         if (topology == "random") {
-            A <- matrix(sample(0:1,
+            A = matrix(sample(0:1,
                                p * p, 
                                replace=TRUE,
                                prob=c(percZeros,
@@ -318,12 +320,12 @@ createA <- function (p,
                         nrow=p,
                         ncol=p
             )
-            A[A != 0] <- nonzeroA
-            A[(row(A)<col(A))]<-0
+            A[A != 0] = nonzeroA
+            A[(row(A)<col(A))] <- 0
         }
-        evs <- abs(eigen(A, only.values=TRUE)$values)
+        evs = abs(eigen(A, only.values=TRUE)$values)
         if (max(evs) < 1 || !stationary) {
-            again <- FALSE
+            again = FALSE
         }
         else {
             print("non-stationary A generated: trying again")

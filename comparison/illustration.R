@@ -21,7 +21,7 @@
 
 
 #remove all objects from the environment
-rm(list = ls())
+rm(list=ls())
 
 # load libraries
 library(ragt2ridges)
@@ -74,9 +74,9 @@ VAR1hat <- ridgeVAR1(Y = Y,
                      lambdaA=optLambdas1[1],
                      lambdaP=optLambdas1[2]
 )
-Ahat <- VAR1hat$A
-Phat <- VAR1hat$P
-rownames(Ahat) <- colnames(Ahat) <- rownames(Phat) <- colnames(Phat) <-
+Ahat = VAR1hat$A
+Phat = VAR1hat$P
+rownames(Ahat) = colnames(Ahat) = rownames(Phat) = colnames(Phat) =
                   rownames(hpvP53)
 # heatmaps of the ridge estimates of A and Omega, Figure 31, SM VIII
 postscript(file="Figure_31a_SM-VIII.eps")
@@ -112,8 +112,8 @@ optLambdas2 <- optPenaltyVAR1(Y,
                               zerosAfit="sparse"
 )
 # determine contour
-lambdaAgrid <- seq(-1, 1, length.out = 20) + optLambdas2[1]
-lambdaPgrid <- seq(-0.001, 0.001, length.out = 20) + optLambdas2[2]
+lambdaAgrid = seq(-1, 1, length.out = 20) + optLambdas2[1]
+lambdaPgrid = seq(-0.001, 0.001, length.out = 20) + optLambdas2[2]
 LOOCVres2 <- loglikLOOCVcontourVAR1(lambdaAgrid, 
                                     lambdaPgrid, 
                                     Y,
@@ -139,8 +139,8 @@ points(optLambdas2[1],
 dev.off()
 
 # re-fit of the VAR(1) model including the prior knowledge
-AhatNonsparse <- Ahat
-PhatNonsparse <- Phat
+AhatNonsparse = Ahat
+PhatNonsparse = Phat
 VAR1hat <- ridgeVAR1(Y = Y,
                      lambdaA=optLambdas2[1], 
                      lambdaP=optLambdas2[2],
@@ -148,9 +148,9 @@ VAR1hat <- ridgeVAR1(Y = Y,
                      zerosP=zerosP,
                      zerosAfit="sparse"
 )
-Ahat <- VAR1hat$A
-Phat <- VAR1hat$P
-rownames(Ahat) <- colnames(Ahat) <- rownames(Phat) <- colnames(Phat) <-
+Ahat = VAR1hat$A
+Phat = VAR1hat$P
+rownames(Ahat) = colnames(Ahat) = rownames(Phat) = colnames(Phat) =
                   rownames(hpvP53)
     
 # heatmaps of the ridge re-estimates of A and Omega, Figure 32, SM VIII
@@ -205,21 +205,21 @@ stats <- nodeStatsVAR1(Ahat,
                        Phat,
                        as.table=TRUE
 )
-rownames(stats) <- fData(hpvP53)[, 1]
+rownames(stats) = fData(hpvP53)[, 1]
 stats[rownames(stats)%in%c("BBC3", "CCND2", "IGF1", "IGFBP3", "THBS1", "CCNG1",
                            "CDKN2A", "SERPINE1", "SESN2", "STEAP3"),  ]
 
 # Histogram of the correlation between the fit and the observation
-nCovariates <- dim(Y)[1]
-nTimes <- dim(Y)[2]
-nSamples <- dim(Y)[3]
-Yhat <- Y[, , ]
-for (i in 1:nSamples) Yhat[, -1, i] <- Ahat %*% Y[, -nTimes, i]
-corFit <- numeric()
+nCovariates = dim(Y)[1]
+nTimes = dim(Y)[2]
+nSamples = dim(Y)[3]
+Yhat = Y[, , ]
+for (i in 1:nSamples) Yhat[, -1, i] = Ahat %*% Y[, -nTimes, i]
+corFit = numeric()
 for (j in 1:nCovariates) {
-    slh <- numeric()
-    for (i in 1:4) slh <- c(slh, cor(Yhat[j, -1, i], Y[j, -1, i], m="s"))
-    corFit <- rbind(corFit, slh)
+    slh = numeric()
+    for (i in 1:4) slh = c(slh, cor(Yhat[j, -1, i], Y[j, -1, i], m="s"))
+    corFit = rbind(corFit, slh)
 }
 # Figure 1, top row, right
 postscript(file="Figure_1b.eps")
@@ -236,17 +236,20 @@ dev.off()
 
 #  Fit of the expression levels of the CCNG1, EI24, SFN, STEAP3, Figure 34, SM VIII
 #  CCNG1 - 18, EI24 - 30, SFN - 54, STEAP3 - 57:
-label <- c("CellLine 1", "CellLine 1", "CellLine 1", "CellLine 1", 
-           "CellLine 1", "CellLine 1", "CellLine 1", "CellLine 2", "CellLine 2", 
-           "CellLine 2", "CellLine 2", "CellLine 2", "CellLine 2", "CellLine 2",
-           "CellLine 3", "CellLine 3", "CellLine 3", "CellLine 3", "CellLine 3",
-           "CellLine 3", "CellLine 3", "CellLine 4", "CellLine 4", "CellLine 4",
-           "CellLine 4", "CellLine 4", "CellLine 4", "CellLine 4"
+label = c("CellLine 1", "CellLine 1", "CellLine 1", "CellLine 1", 
+          "CellLine 1", "CellLine 1", "CellLine 1", "CellLine 2", "CellLine 2", 
+          "CellLine 2", "CellLine 2", "CellLine 2", "CellLine 2", "CellLine 2",
+          "CellLine 3", "CellLine 3", "CellLine 3", "CellLine 3", "CellLine 3",
+          "CellLine 3", "CellLine 3", "CellLine 4", "CellLine 4", "CellLine 4",
+          "CellLine 4", "CellLine 4", "CellLine 4", "CellLine 4"
 )
-timefac <- rep(2:8, 4)
+timefac = rep(2:8, 4)
 # CCNG1 - Figure_34a_SM-VIII
-p <- data.frame(as.numeric(Y[18, -1, ]), timefac, label)
-colnames(p) <- c("Expression", "TimePoints", "CellLine")
+p = data.frame(as.numeric(Y[18, -1, ]), 
+               timefac, 
+               label
+)
+colnames(p) = c("Expression", "TimePoints", "CellLine")
 xyplot(Expression ~ TimePoints | CellLine, 
        data=p, 
        layout=c(4, 1), 
@@ -262,8 +265,11 @@ trellis.unfocus()
 
 
 # EI24 - Figure_34b_SM-VIII
-p <- data.frame(as.numeric(Y[30, -1, ]), timefac, label)
-colnames(p) <- c("Expression", "TimePoints", "CellLine")
+p = data.frame(as.numeric(Y[30, -1, ]),
+               timefac, 
+               label
+)
+colnames(p) = c("Expression", "TimePoints", "CellLine")
 xyplot(Expression ~ TimePoints | CellLine,
        data=p,
        layout=c(4, 1), 
@@ -279,8 +285,11 @@ trellis.unfocus()
 
 
 # SFN - Figure_34c_SM-VIII
-p <- data.frame(as.numeric(Y[54, -1, ]), timefac, label)
-colnames(p) <- c("Expression", "TimePoints", "CellLine")
+p = data.frame(as.numeric(Y[54, -1, ]), 
+               timefac, 
+               label
+)
+colnames(p) = c("Expression", "TimePoints", "CellLine")
 xyplot(Expression ~ TimePoints | CellLine, 
        data=p,
        layout=c(4, 1), 
@@ -296,8 +305,11 @@ trellis.unfocus()
 
 
 # STEAP3 - Figure_34d_SM-VIII
-p <- data.frame(as.numeric(Y[57, -1, ]), timefac, label)
-colnames(p) <- c("Expression", "TimePoints", "CellLine")
+p = data.frame(as.numeric(Y[57, -1, ]),
+               timefac, 
+               label
+)
+colnames(p) = c("Expression", "TimePoints", "CellLine")
 xyplot(Expression ~ TimePoints | CellLine,
        data=p,
        layout=c(4, 1), 
@@ -313,8 +325,11 @@ trellis.unfocus()
 
 
 # plot of gene epxression data over time - Figure 2, right panel
-p <- data.frame(as.numeric(Y[37, -1, ]), timefac, label)
-colnames(p) <- c("Expression", "TimePoints", "CellLine")
+p = data.frame(as.numeric(Y[37, -1, ]),
+               timefac, 
+               label
+)
+colnames(p) = c("Expression", "TimePoints", "CellLine")
 xyplot(Expression ~ TimePoints | CellLine, 
        data = p, 
        layout = c(4, 1), 
