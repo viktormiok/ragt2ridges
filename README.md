@@ -1,9 +1,10 @@
+<img src="https://github.com/viktormiok/viktormiok.me/blob/main/software/ragt2ridges.png" align="right" height="200" width="200">
+
 [![CRAN status](https://www.r-pkg.org/badges/version/ragt2ridges)](https://cran.r-project.org/package=ragt2ridges) ![](https://img.shields.io/badge/languages-R_,_C++_and_C-orange.svg) ![version](https://img.shields.io/badge/GiHub_version-1.1.0-519dd9) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/viktormiok/ragt2ridges) ![GitHub issues](https://img.shields.io/github/issues/viktormiok/ragt2ridges)
 
 ![dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-orange)  	![commit](https://img.shields.io/github/last-commit/viktormiok/ragt2ridges) ![GitHub](https://img.shields.io/github/license/viktormiok/ragt2ridges)
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/viktormiok/ragt2ridges) 
-
 
 
 # ragt2ridges
