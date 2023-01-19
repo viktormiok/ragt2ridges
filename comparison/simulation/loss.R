@@ -31,7 +31,7 @@ library(SparseTSCGM)
 library(ragt2ridges)
 
 # set the directory
-getDir <- getwd()
+getDir = getwd()
 setwd("./simulation")
 source("functions.R")
 
@@ -45,7 +45,7 @@ sim <- simDataGen(p=p,
                   data="sim5",
                   topologyA="clique", 
                   topologyP="banded")
-trueA <- sim$A; trueP <- sim$P
+trueA = sim$A; trueP = sim$P
 
 # set the directory for output 
 setwd(getDir)  
@@ -55,7 +55,7 @@ setwd("./results")
 itTotal = 1
 
 # define output values
-lossPr <- lossAr <- lossPs <- lossAs <- numeric()
+lossPr = lossAr = lossPs = lossAs = numeric()
 for(it in 1:itTotal){
     # sample data from a VAR(1) model
     Y <- dataVAR1(n, 
@@ -66,15 +66,15 @@ for(it in 1:itTotal){
     Yridge <- centerVAR1data(Y)
     
     # optimal lambdas for ragt2ridges
-    lamR <- seq(4, 0.01, length.out=20)
+    lamR = seq(4, 0.01, length.out=20)
     LOOCVrPrev <- loglikLOOCVVAR1sim(c(lamR[1], 
                                        lamR[1]), 
                                      Yridge, 
                                      penalty="ridge"
     )
-    LOOCVr <- numeric()
+    LOOCVr = numeric()
     for (i in 1:length(lamR)) {
-        LOOCVr <- cbind(LOOCVr, loglikLOOCVVAR1sim(c(lamR[i],
+        LOOCVr = cbind(LOOCVr, loglikLOOCVVAR1sim(c(lamR[i],
                                                      lamR[i]), 
                                                    Yridge,
                                                    penalty="ridge")
@@ -99,8 +99,8 @@ for(it in 1:itTotal){
                           lambdaA=optLr[1],
                           lambdaP=optLr[2]
     )
-    ridgeA <- ridgeEst$A
-    ridgeP <- ridgeEst$P
+    ridgeA = ridgeEst$A
+    ridgeP = ridgeEst$P
     
     # convert a time-series array to a longitudinal object required for
     # SparseTSCGM
@@ -110,8 +110,8 @@ for(it in 1:itTotal){
     )
     
     # optimal lambdas for ridge method
-    lamS <- seq(2, 0.01, length.out=20)
-    LOOCVs <- numeric()
+    lamS = seq(2, 0.01, length.out=20)
+    LOOCVs = numeric()
     LOOCVsPrev <- loglikLOOCVVAR1sim(c(lamS[1], lamS[1]),
                                      Yridge, 
                                      penalty="scad")
@@ -143,14 +143,14 @@ for(it in 1:itTotal){
                             optimality=NULL
     )
     scadA <- t(scadEst$gamma)
-    scadP <- scadEst$theta
+    scadP = scadEst$theta
     
     # Frobenius loss for A and Sigma
-    lossPr <- cbind(lossPr, sqrt(sum((as.numeric(ridgeP) - as.numeric(trueP))^2)))
-    lossPs <- cbind(lossPs, sqrt(sum((as.numeric(scadP) - as.numeric(trueP))^2)))
-    lossAr <- cbind(lossAr, sqrt(sum((as.numeric(ridgeA) - as.numeric(trueA))^2)))
-    lossAs <- cbind(lossAs, sqrt(sum((as.numeric(scadA) - as.numeric(trueA))^2)))
-    LOSSbandedClique25 <- list(lossPr=lossPr, 
+    lossPr = cbind(lossPr, sqrt(sum((as.numeric(ridgeP) - as.numeric(trueP))^2)))
+    lossPs = cbind(lossPs, sqrt(sum((as.numeric(scadP) - as.numeric(trueP))^2)))
+    lossAr = cbind(lossAr, sqrt(sum((as.numeric(ridgeA) - as.numeric(trueA))^2)))
+    lossAs = cbind(lossAs, sqrt(sum((as.numeric(scadA) - as.numeric(trueA))^2)))
+    LOSSbandedClique25 = list(lossPr=lossPr, 
                                lossPs=lossPs, 
                                lossAr=lossAr, 
                                lossAs=lossAs
