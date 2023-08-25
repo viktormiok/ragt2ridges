@@ -37,19 +37,19 @@ load("LOSSrealData25.Rdata")
 # set the directory for output
 setwd("./results")
 
-h1 <- LOSSbandedHub25
-c1 <- LOSSbandedClique25
-r1 <- LOSSbandedRandom25
-t1 <- LOSSrealData25
-h2 <- LOSScompleteHub25
-c2 <- LOSScompleteClique25
-r2 <- LOSScompleteRandom25
+h1 = LOSSbandedHub25
+c1 = LOSSbandedClique25
+r1 = LOSSbandedRandom25
+t1 = LOSSrealData25
+h2 = LOSScompleteHub25
+c2 = LOSScompleteClique25
+r2 = LOSScompleteRandom25
 
 
 # frobenius loss comparison between SCAD and ridge estimatiors for precision
 # Figure_8a_SM-VII
 postscript(file="Figure_8a_SM-VII.eps")
-rng <- range(h1$lossAs, h1$lossAr, c1$lossAs, c1$lossAr, r1$lossAs, r1$lossAr,
+rng = range(h1$lossAs, h1$lossAr, c1$lossAs, c1$lossAr, r1$lossAs, r1$lossAr,
     t1$lossAs, t1$lossAr, h2$lossAs, h2$lossAr, c2$lossAs, c2$lossAr, r2$lossAs,
     r2$lossAr)
 boxplot(as.matrix(h1$lossAs)[1, ], 
@@ -181,7 +181,7 @@ mtext(1,
 )
 mtext(1, 
       at=c(1.5, 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18, 19.5),
-      text=c(expression(paste(Omega, "(band)")), "",
+      text = c(expression(paste(Omega, "(band)")), "",
              expression(paste(Omega, "(complete)")), "",
              expression(paste(Omega, "(band)")), "", 
              expression(paste(Omega, "(complete)")), "",
@@ -203,9 +203,9 @@ dev.off()
 # Frobenius loss comparison between SCAD and ridge estimatiors for precision
 # Figure_8b_SM-VII
 postscript(file="Figure_8b_SM-VII.eps")
-rng <- range(h1$lossPs, h1$lossPr, c1$lossPs, c1$lossPr, r1$lossPs, r1$lossPr,
-             t1$lossPs, t1$lossPr, h2$lossPs, h2$lossPr, c2$lossPs, c2$lossPr,
-             r2$lossPs, r2$lossPr)
+rng = range(h1$lossPs, h1$lossPr, c1$lossPs, c1$lossPr, r1$lossPs, r1$lossPr,
+            t1$lossPs, t1$lossPr, h2$lossPs, h2$lossPr, c2$lossPs, c2$lossPr,
+            r2$lossPs, r2$lossPr)
 boxplot(as.matrix(h1$lossPs)[1, ],
         at=1,
         xlim=c(0.5, 20), 
