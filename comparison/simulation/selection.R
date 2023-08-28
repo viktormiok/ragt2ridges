@@ -47,11 +47,11 @@ sim <- simDataGen(p=p,
                   topologyA="clique", 
                   topologyP="banded"
 )
-trueA1 <- sim$A; trueP <- sim$P
+trueA1 = sim$A; trueP = sim$P
 
 # true parameter matrix where non-zero element are 1
-trueA <- trueA1
-trueA[trueA != 0] <- 1
+trueA = trueA1
+trueA[trueA != 0] = 1
 
 # set the directory for output
 setwd(getDir)
@@ -61,7 +61,7 @@ setwd("./results")
 itTotal=1
 
 # define output values
-scadT <- ridgeTa <- ridgeTb <- scadF <- ridgeFa <- ridgeFb <- numeric()
+scadT = ridgeTa = ridgeTb = scadF = ridgeFa = ridgeFb = numeric()
 
 for(it in 1:itTotal){
     # sample data from a VAR(1) model
@@ -81,8 +81,8 @@ for(it in 1:itTotal){
     )
     
     # optimal penalty parameter ridge method
-    lamS <- seq(2, 0.01, length.out=20)
-    LOOCVs <- numeric()
+    lamS = seq(2, 0.01, length.out=20)
+    LOOCVs = numeric()
     LOOCVsPrev <- loglikLOOCVVAR1sim(c(lamS[1],
                                        lamS[1]),
                                      Yridge, 
@@ -116,26 +116,26 @@ for(it in 1:itTotal){
                             lam1=optLs[1],
                             lam2=optLs[2],
                             optimality=NULL)$gamma)
-    scadA[scadA != 0] <- 1
+    scadA[scadA != 0] = 1
     
     # calculate false positive and true postive rate
     if (sum(scadA == 1) != 0) {
         PRDs <- prediction(as.numeric(scadA),
                            as.numeric(trueA)
         )
-        TPRs <- PRDs@tp[[1]][2]/max(PRDs@tp[[1]])
-        FPRs <- PRDs@fp[[1]][2]/max(PRDs@fp[[1]])
+        TPRs = PRDs@tp[[1]][2]/max(PRDs@tp[[1]])
+        FPRs = PRDs@fp[[1]][2]/max(PRDs@fp[[1]])
     } else {
-        TPRs <- FPRs <- 0
+        TPRs = FPRs = 0
     }
     
     # optimal penalty parameter for SCAD method
-    lamR <- seq(4, 0.01, length.out=20)
+    lamR = seq(4, 0.01, length.out=20)
     LOOCVrPrev <- loglikLOOCVVAR1sim(c(lamR[1], 
                                        lamR[1]),
                                      Yridge,
                                      penalty="ridge")
-    LOOCVr <- numeric()
+    LOOCVr = numeric()
     for (i in 1:length(lamR)) {
         LOOCVr <- cbind(LOOCVr,
                         loglikLOOCVVAR1sim(c(lamR[i], lamR[i]), 
@@ -164,45 +164,45 @@ for(it in 1:itTotal){
     )
     # calculate false positive and true postive rate
     if (sum(scadA == 1) != 0) {
-        ridgeAa <- matrix(0, p, p)
+        ridgeAa = matrix(0, p, p)
         # determine null and non-null elements of A
         ridgeAa[sparsifyVAR1(A=ridgeEst$A, 
                              SigmaE=symm(solve(ridgeEst$P)),
                              threshold="top",
-                             top=as.numeric(sum(scadA == 1)))$nonzeros] <- 1
+                             top=as.numeric(sum(scadA == 1)))$nonzeros] = 1
         if (sum(ridgeAa == 1) != 0) {
             PRDra <- prediction(as.numeric(ridgeAa),
                                 as.numeric(trueA)
             )
-            TPRra <- PRDra@tp[[1]][2]/max(PRDra@tp[[1]])
-            FPRra <- PRDra@fp[[1]][2]/max(PRDra@fp[[1]])
+            TPRra = PRDra@tp[[1]][2]/max(PRDra@tp[[1]])
+            FPRra = PRDra@fp[[1]][2]/max(PRDra@fp[[1]])
         } else {
-            TPRra <- FPRra <- 0
+            TPRra = FPRra = 0
         }
     } else {
-        TPRra <- FPRra <- 0
+        TPRra = FPRra = 0
     }
-    ridgeAb <- matrix(0, p, p)
+    ridgeAb = matrix(0, p, p)
     ridgeAb[sparsifyVAR1(A=ridgeEst$A, 
                          SigmaE=symm(solve(ridgeEst$P)),
                          threshold="localFDR",
-                         FDRcut=0.8)$nonzeros] <- 1
+                         FDRcut=0.8)$nonzeros] = 1
     #  Calculate false positive and true postive rate
     if(sum(ridgeAb == 1)!=0){
-         PRDrb <- prediction(as.numeric(ridgeAb),as.numeric(trueA))
-         TPRrb <- PRDrb@tp[[1]][2]/max(PRDrb@tp[[1]])
-         FPRrb <- PRDrb@fp[[1]][2]/max(PRDrb@fp[[1]])
+         PRDrb <- prediction(as.numeric(ridgeAb), as.numeric(trueA))
+         TPRrb = PRDrb@tp[[1]][2]/max(PRDrb@tp[[1]])
+         FPRrb = PRDrb@fp[[1]][2]/max(PRDrb@fp[[1]])
     } else {
-        TPRrb <- FPRrb <- 0
+        TPRrb = FPRrb = 0
     }
 
     # true postive and false positive rate of edge selection comparison
-    scadT <- c(scadT, TPRs)
-    ridgeTa <- c(ridgeTa, TPRra)
-    ridgeTb <- c(ridgeTb, TPRrb)
-    scadF <- c(scadF, FPRs)
-    ridgeFa <- c(ridgeFa, FPRra)
-    ridgeFb <- c(ridgeFb, FPRrb)
+    scadT = c(scadT, TPRs)
+    ridgeTa = c(ridgeTa, TPRra)
+    ridgeTb = c(ridgeTb, TPRrb)
+    scadF = c(scadF, FPRs)
+    ridgeFa = c(ridgeFa, FPRra)
+    ridgeFb = c(ridgeFb, FPRrb)
 
 
     ROCbandedClique25 <- list(scadT=scadT,
