@@ -45,8 +45,8 @@ optLambda <- optPenaltyVAR2(Y,
 )
 
 # specify grid for contour
-lambdaA1grid <- seq(0.00001, 0.08, length.out=20)
-lambdaA2grid <- seq(11, 16, length.out=20)
+lambdaA1grid = seq(0.00001, 0.08, length.out=20)
+lambdaA2grid = seq(11, 16, length.out=20)
 LOOCVres <- loglikLOOCVcontourVAR2(lambdaA1grid, 
                                    lambdaA2grid,
                                    Y, 
@@ -56,7 +56,7 @@ LOOCVres <- loglikLOOCVcontourVAR2(lambdaA1grid,
 # contur plot of the full support - Figure 5a
 setEPS()
 postscript(file="Figure_SM1a.eps")
-op <- par(pty="s")
+op = par(pty="s")
 contour(lambdaA1grid, 
         lambdaA2grid,
         LOOCVres$llLOOCV,
@@ -80,12 +80,12 @@ VAR2hat <- ridgeVAR2(Y,
                      lambdaA2=optLambda[2],
                      lambdaP=optLambda[3]
 )
-Ahat1   <- VAR2hat$A1
-Ahat2   <- VAR2hat$A2
-Phat    <- VAR2hat$P
-rownames(Ahat1) <- colnames(Ahat1) <- rownames(Ahat2) <- 
-                   colnames(Ahat2) <- rownames(Phat)  <- 
-                   colnames(Phat) <- rownames(hpvP53rna)
+Ahat1 = VAR2hat$A1
+Ahat2 = VAR2hat$A2
+Phat = VAR2hat$P
+rownames(Ahat1) = colnames(Ahat1) = rownames(Ahat2) = 
+                  colnames(Ahat2) = rownames(Phat)  = 
+                  colnames(Phat) = rownames(hpvP53rna)
 
 # determine support for A and O
 zeros    <- sparsifyVAR2(Ahat1,
@@ -95,8 +95,8 @@ zeros    <- sparsifyVAR2(Ahat1,
                          FDRcut=c(0.95, 0.95), 
                          statistics=F
 )
-zerosA1  <- zeros$zerosA1
-zerosA2  <- zeros$zerosA2
+zerosA1  = zeros$zerosA1
+zerosA2  = zeros$zerosA2
 supportP <- sparsify(Phat, 
                      threshold="localFDR", 
                      FDRcut=0.95,
@@ -118,8 +118,8 @@ optLambda1 <- optPenaltyVAR2(Y,
                              zerosA1fit="sparse"
 )
 # specify grid for contour
-lambdaA1grid <- seq(0.01, 1, length.out=20)
-lambdaA2grid <- seq(0.1, 10, length.out=20)
+lambdaA1grid = seq(0.01, 1, length.out=20)
+lambdaA2grid = seq(0.1, 10, length.out=20)
 LOOCVres1 <- loglikLOOCVcontourVAR2(lambdaA1grid,
                                     lambdaA2grid, 
                                     Y, 
@@ -133,7 +133,7 @@ LOOCVres1 <- loglikLOOCVcontourVAR2(lambdaA1grid,
 # contur plot of the spars support - Figure 5b
 setEPS()
 postscript(file="Figure_SM1b.eps")
-op <- par(pty="s")
+op = par(pty="s")
 contour(lambdaA1grid,
         lambdaA2grid, 
         LOOCVres1$llLOOCV,
@@ -163,16 +163,16 @@ VAR1hat <- ridgeVAR2(Y=Y,
                      separatorsP=zerosP$separators,
                      zerosA1fit="sparse"
 )
-Ahat1 <- VAR1hat$A1
-Ahat2 <- VAR1hat$A2
-Phat <- VAR1hat$P
-rownames(Ahat1) <- colnames(Ahat1) <- rownames(Ahat2) <- colnames(Ahat2) <-
-    rownames(Phat) <- colnames(Phat) <- rownames(hpvP53rna)
+Ahat1 = VAR1hat$A1
+Ahat2 = VAR1hat$A2
+Phat = VAR1hat$P
+rownames(Ahat1) = colnames(Ahat1) = rownames(Ahat2) = colnames(Ahat2) <-
+    rownames(Phat) = colnames(Phat) = rownames(hpvP53rna)
 
 # graph of the interaction among the genes - Figure 6
 setEPS()
 postscript(file="Figure_SM2.eps", fonts=c("serif", "Palatino","sans"))
-op <- par(pty="s")
+op = par(pty="s")
 graphVAR2(Ahat1, 
           Ahat2, 
           Phat, 
@@ -198,24 +198,24 @@ stats <- nodeStatsVAR2(Ahat1,
                        Phat, 
                        as.table=TRUE
 )
-rownames(stats) <- fData(hpvP53)[, 1]
+rownames(stats) = fData(hpvP53)[, 1]
 stats[rownames(stats)%in%c("IGFBP3","IGF1","RPRM","CCND2","THBS1","SFN","CCNB1",
     "TP73","DDB2","SESN2"),  ]
 
 # Histogram of the correlation between the fit and the observation
-nCovariates <- dim(Y)[1]
-nTimes <- dim(Y)[2]
-nSamples <- dim(Y)[3]
-Yhat <- Y[, , ]
+nCovariates = dim(Y)[1]
+nTimes = dim(Y)[2]
+nSamples = dim(Y)[3]
+Yhat = Y[, , ]
 
-for (i in 1:nSamples) Yhat[, -1, i] <- cbind(Ahat1 %*% Y[, -nTimes, i][,1],
+for (i in 1:nSamples) Yhat[, -1, i] = cbind(Ahat1 %*% Y[, -nTimes, i][,1],
     Ahat1 %*% Y[, -nTimes, i][,2:7] + Ahat2 %*% Y[, -c(7,8), i])
 
-corFit2 <- numeric()
+corFit2 = numeric()
 for (j in 1:nCovariates) {
-    slh <- numeric()
-    for (i in 1:4) slh <- c(slh, cor(Yhat[j, -1, i], Y[j, -1, i], m="s"))
-    corFit2 <- rbind(corFit2, slh)
+    slh = numeric()
+    for (i in 1:4) slh = c(slh, cor(Yhat[j, -1, i], Y[j, -1, i], m="s"))
+    corFit2 = rbind(corFit2, slh)
 }
 
 ################################################################################
@@ -233,9 +233,9 @@ VAR1hat <- ridgeVAR1(Y=Y,
                      lambdaA=optLambdas1[1],
                      lambdaP=optLambdas1[2]
 )
-Ahat <- VAR1hat$A
-Phat <- VAR1hat$P
-rownames(Ahat) <- colnames(Ahat) <- rownames(Phat) <- colnames(Phat) <-
+Ahat = VAR1hat$A
+Phat = VAR1hat$P
+rownames(Ahat) = colnames(Ahat) = rownames(Phat) = colnames(Phat) <-
      rownames(hpvP53rna)
 
 # determine support for A and O
@@ -273,28 +273,28 @@ VAR1hat <- ridgeVAR1(Y=Y,
                      separatorsP=zerosP$separators, 
                      zerosAfit="sparse"
 )
-Ahat <- VAR1hat$A
-Phat <- VAR1hat$P
-rownames(Ahat) <- colnames(Ahat) <- rownames(Phat) <- colnames(Phat) <-
+Ahat = VAR1hat$A
+Phat = VAR1hat$P
+rownames(Ahat) = colnames(Ahat) = rownames(Phat) = colnames(Phat) <-
     rownames(hpvP53rna)
 
 # Histogram of the correlation between the fit and the observation
-nCovariates <- dim(Y)[1]
-nTimes <- dim(Y)[2]
-nSamples <- dim(Y)[3]
-Yhat <- Y[, , ]
-for (i in 1:nSamples) Yhat[, -1, i] <- Ahat %*% Y[, -nTimes, i]
-corFit1 <- numeric()
+nCovariates = dim(Y)[1]
+nTimes = dim(Y)[2]
+nSamples = dim(Y)[3]
+Yhat = Y[, , ]
+for (i in 1:nSamples) Yhat[, -1, i] = Ahat %*% Y[, -nTimes, i]
+corFit1 = numeric()
 for (j in 1:nCovariates) {
-    slh <- numeric()
-    for (i in 1:4) slh <- c(slh, cor(Yhat[j, -1, i], Y[j, -1, i], m="s"))
-    corFit1 <- rbind(corFit1, slh)
+    slh = numeric()
+    for (i in 1:4) slh = c(slh, cor(Yhat[j, -1, i], Y[j, -1, i], m="s"))
+    corFit1 = rbind(corFit1, slh)
 }
     
 # make histograms and QQplot to compare VAR1 and VAR2 model - Figure 7
 setEPS()
 postscript("Figure_2a.eps")
-op <- par(pty="s")
+op = par(pty="s")
 hist(corFit1, 
      xlab="Correlation",
      ylab="Frequency", 
@@ -310,7 +310,7 @@ dev.off()
 
 setEPS()
 postscript("Figure_2b.eps")
-op <- par(pty="s")
+op = par(pty="s")
 hist(corFit2, 
      xlab="Correlation", 
      ylab="Frequency", 
@@ -326,7 +326,7 @@ dev.off()
 
 setEPS()
 postscript("Figure_2c.eps")
-op <- par(pty="s")
+op = par(pty="s")
 qqplot(corFit1, 
        corFit2, 
        main="QQ-plot: VAR(1) vs. VAR(2)", 
