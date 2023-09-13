@@ -40,11 +40,11 @@ X1 <- longitudinal2array(t(copynumber(hpvP53cn)))
 X2 <- longitudinal2array(t(exprs(hpvP53mir)))
 
 # load the constrained elements to zero for B
-zerosB <- cbind(cn2rna, mir2rna)
-zerosB <- which(zerosB==0, arr.ind=TRUE)
+zerosB = cbind(cn2rna, mir2rna)
+zerosB = which(zerosB==0, arr.ind=TRUE)
 
 # merge X1 and X2 data into the one array
-X <- abind(X1, X2, along=1)
+X = abind(X1, X2, along=1)
 
 # search for optimal penalty parameters
 optLambda1 <- optPenaltyVARX1(Y,
@@ -58,8 +58,8 @@ optLambda1 <- optPenaltyVARX1(Y,
 )
 
 # specify grid for contour
-lambdaAgrid <- seq(250, 350, length.out=20)
-lambdaBgrid <- seq(100, 200, length.out=20)
+lambdaAgrid = seq(250, 350, length.out=20)
+lambdaBgrid = seq(100, 200, length.out=20)
 LOOCVres1 <- loglikLOOCVcontourVARX1(lambdaAgrid,
                                      lambdaBgrid,
                                      Y,
@@ -72,7 +72,7 @@ LOOCVres1 <- loglikLOOCVcontourVARX1(lambdaAgrid,
 # make a contour plot - Figure 15a
 setEPS()
 postscript(file="Figure_SM6leftPanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
 contour(lambdaAgrid, 
         lambdaBgrid,
         LOOCVres1$llLOOCV,
@@ -100,13 +100,13 @@ VAR1hat <- ridgeVARX1(Y=Y,
                       lagX=0,
                       unbalanced=matrix(c(4, 5, 3, 3), 2, 2)
 )
-Ahat <- VAR1hat$A
-B1hat <- VAR1hat$B[, 1:64]
-B2hat <- VAR1hat$B[, 65:170]
-Phat <- VAR1hat$P
-rownames(Ahat) <- colnames(Ahat) <- rownames(Phat) <- colnames(Phat) <-
-rownames(B1hat) <- rownames(B2hat) <- colnames(B1hat) <- rownames(hpvP53rna)
-colnames (B2hat) <- rownames(hpvP53mir)
+Ahat = VAR1hat$A
+B1hat = VAR1hat$B[, 1:64]
+B2hat = VAR1hat$B[, 65:170]
+Phat = VAR1hat$P
+rownames(Ahat) = colnames(Ahat) = rownames(Phat) = colnames(Phat) <-
+rownames(B1hat) = rownames(B2hat) = colnames(B1hat) = rownames(hpvP53rna)
+colnames (B2hat) = rownames(hpvP53mir)
 
 # determine support for A and O
 spar <- sparsifyVARX1(X=X, 
@@ -118,7 +118,7 @@ spar <- sparsifyVARX1(X=X,
                       zerosB=zerosB,
                       statistics=F
 )
-zerosA <- spar$zerosA
+zerosA = spar$zerosA
 supportP <- sparsify(Phat, 
                      threshold="localFDR",
                      FDRcut=0.95,
@@ -141,8 +141,8 @@ optLambda2 <- optPenaltyVARX1(Y=Y,
                               unbalanced=matrix(c(4, 5, 3, 3), 2, 2)
 )
 # determine contour
-lambdaAgrid <- seq(0.1, 5, length.out=20)
-lambdaBgrid <- seq(0.1, 1.5, length.out=20)
+lambdaAgrid = seq(0.1, 5, length.out=20)
+lambdaBgrid = seq(0.1, 1.5, length.out=20)
 LOOCVres1 <- loglikLOOCVcontourVARX1(lambdaAgrid, 
                                      lambdaBgrid,
                                      Y,
@@ -160,7 +160,7 @@ LOOCVres1 <- loglikLOOCVcontourVARX1(lambdaAgrid,
 # plot contour
 setEPS()
 postscript(file="Figure_SM6rightPanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
 contour(lambdaAgrid, 
         lambdaBgrid,
         LOOCVres1$llLOOCV,
@@ -179,10 +179,10 @@ par(op)
 dev.off()
 
 # re-fit of the VARX(1) model including the prior knowledge
-AhatNonsparse <- Ahat
-B1hatNonsparse <- B1hat
-B2hatNonsparse <- B2hat
-PhatNonsparse <- Phat                       #
+AhatNonsparse = Ahat
+B1hatNonsparse = B1hat
+B2hatNonsparse = B2hat
+PhatNonsparse = Phat                       #
 VAR1hat <- ridgeVARX1(Y=Y,
                       X=X,
                       lambdaA=optLambda2[1],
@@ -196,18 +196,18 @@ VAR1hat <- ridgeVARX1(Y=Y,
                       lagX=0,
                       unbalanced=matrix(c(4, 5, 3, 3), 2, 2)
 )
-Ahat <- VAR1hat$A
-B1hat <- VAR1hat$B[,1:64]
-B2hat <- VAR1hat$B[,65:170]
-Phat <- VAR1hat$P
-rownames(Ahat) <- colnames(Ahat) <- rownames(Phat) <- colnames(Phat) <-
-    rownames(B1hat) <- rownames(B2hat) <- colnames(B1hat) <- rownames(hpvP53rna)
-    colnames (B2hat) <- rownames(hpvP53mir)
+Ahat = VAR1hat$A
+B1hat = VAR1hat$B[,1:64]
+B2hat = VAR1hat$B[,65:170]
+Phat = VAR1hat$P
+rownames(Ahat) = colnames(Ahat) = rownames(Phat) = colnames(Phat) <-
+    rownames(B1hat) = rownames(B2hat) = colnames(B1hat) = rownames(hpvP53rna)
+    colnames (B2hat) = rownames(hpvP53mir)
 
 # heatmaps of the ridge re-estimates of A, B - Figure 16
 setEPS()
 postscript(file="Figure_SM7leftPanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
     edgeHeat(Ahat, 
              main="ridge re-estimate of A, with inferred support"
 )
@@ -215,7 +215,7 @@ par(op)
 dev.off()
 setEPS()
 postscript(file="Figure_SM7middlePanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
 edgeHeat(B1hat, 
          main= "ridge re-estimate of B (DNA copy number),
                   with inferred support"
@@ -224,7 +224,7 @@ par(op)
 dev.off()
 setEPS()
 postscript(file="Figure_SM7rightPanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
 edgeHeat(B2hat, 
         main="ridge re-estimate of B (miRNA gene expression),
                  with inferred support"
@@ -235,7 +235,7 @@ dev.off()
 # graph of the temporal interaction among the genes - Figure 17
 setEPS()
 postscript(file="Figure_5.eps", fonts=c("serif", "Palatino","sans"))
-op <- par(pty="s")
+op = par(pty="s")
 graphVARX1(Ahat,
            VAR1hat$B, 
            Phat,
@@ -257,24 +257,24 @@ par(op)
 dev.off()
 
 #  Histogram of the correlation between the fit and the observation
-nCovariates <- dim(Y)[1]
-nTimes <- dim(Y)[2]
-nSamples <- dim(Y)[3]
-Yhat <- Y[,,]
-Xhat <- X[,,]
+nCovariates = dim(Y)[1]
+nTimes = dim(Y)[2]
+nSamples = dim(Y)[3]
+Yhat = Y[,,]
+Xhat = X[,,]
 for (i in 1:nSamples) {
-    Yhat[, -1, i] <- Ahat %*% Y[, -nTimes, i] + VAR1hat$B %*% Xhat[, -1, i]
+    Yhat[, -1, i] = Ahat %*% Y[, -nTimes, i] + VAR1hat$B %*% Xhat[, -1, i]
 }
-corFit1 <- numeric()
+corFit1 = numeric()
 for(j in 1:nCovariates){
-    slh <- numeric()
+    slh = numeric()
     for (i in 1:4){
-        slh <- c(slh, cor(Yhat[j, -1, i], 
+        slh = c(slh, cor(Yhat[j, -1, i], 
                           Y[j, -1, i],
                           m="s")
         )
     }
-    corFit1 <- rbind(corFit1, slh)
+    corFit1 = rbind(corFit1, slh)
 }
 
 ################################################################################
@@ -293,9 +293,9 @@ VAR1hat1 <- ridgeVAR1(Y=Y,
                       lambdaA=optLambd1[1], 
                       lambdaP=optLambd1[2]
 )
-Ahat1 <- VAR1hat1$A
-Phat1 <- VAR1hat1$P
-rownames(Ahat1) <- colnames(Ahat1) <- rownames(Phat1) <- colnames(Phat1) <-
+Ahat1 = VAR1hat1$A
+Phat1 = VAR1hat1$P
+rownames(Ahat1) = colnames(Ahat1) = rownames(Phat1) = colnames(Phat1) <-
                    rownames(hpvP53rna)
 
 # determine support for A and O
@@ -333,31 +333,31 @@ VAR1hat <- ridgeVAR1(Y=Y,
                      separatorsP=zerosP1$separators,
                      zerosAfit="sparse"
 )
-Ahat1 <- VAR1hat$A
-Phat1 <- VAR1hat$P
-rownames(Ahat1) <- colnames(Ahat1) <- rownames(Phat1) <- colnames(Phat1) <-
+Ahat1 = VAR1hat$A
+Phat1 = VAR1hat$P
+rownames(Ahat1) = colnames(Ahat1) = rownames(Phat1) = colnames(Phat1) <-
                    rownames(hpvP53rna)
 
 # Histogram of the correlation between the fit and the observation
-nCovariates <- dim(Y)[1]
-nTimes <- dim(Y)[2]
-nSamples <- dim(Y)[3]
-Yhat1 <- Y[, , ]
-for (i in 1:nSamples) Yhat1[, -1, i] <- Ahat1 %*% Y[, -nTimes, i]
-corFit2 <- numeric()
+nCovariates = dim(Y)[1]
+nTimes = dim(Y)[2]
+nSamples = dim(Y)[3]
+Yhat1 = Y[, , ]
+for (i in 1:nSamples) Yhat1[, -1, i] = Ahat1 %*% Y[, -nTimes, i]
+corFit2 = numeric()
 for (j in 1:nCovariates) {
-    slh <- numeric()
-    for (i in 1:4) slh <- c(slh, cor(Yhat1[j, -1, i],
+    slh = numeric()
+    for (i in 1:4) slh = c(slh, cor(Yhat1[j, -1, i],
                                      Y[j, -1, i],
                                      m="s")
     )
-    corFit2 <- rbind(corFit2, slh)
+    corFit2 = rbind(corFit2, slh)
 }
 
 # make the plot of the histograms to compare VAR1 and VAR2 model
 setEPS()
 postscript("Figure_SM8leftPanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
 hist(corFit2, 
      xlab="Correlation",
      ylab="Frequency",
@@ -373,7 +373,7 @@ dev.off()
 
 setEPS()
 postscript("Figure_SM8rightPanel.eps")
-op <- par(pty="s")
+op = par(pty="s")
 hist(corFit1, 
      xlab="Correlation",
      ylab="Frequency", 
@@ -388,18 +388,21 @@ par(op)
 dev.off()
 
 # comparison plot of the fit with VAR1 and VARX1 - Figure 14
-id <- 18
+id = 18
 setEPS()
 postscript("Figure_6.eps")
-op <- par(pty="s")
-label <- c(rep("CellLine 1", 7),
-           rep("CellLine 2", 7),
-           rep("CellLine 3", 7),
-           rep("CellLine 4", 7)
+op = par(pty="s")
+label = c(rep("CellLine 1", 7),
+          rep("CellLine 2", 7),
+          rep("CellLine 3", 7),
+          rep("CellLine 4", 7)
 )
-timefac <- rep(2:8, 4)
-p <- data.frame(as.numeric(Y[id, -1,]), timefac, label)
-colnames(p) <- c("Expression", "TimePoints", "CellLine")
+timefac = rep(2:8, 4)
+p = data.frame(as.numeric(Y[id, -1,]),
+               timefac, 
+               label
+)
+colnames(p) = c("Expression", "TimePoints", "CellLine")
 xyplot(Expression ~ TimePoints|CellLine, 
                                 data=p, 
                                 layout=c(4, 1),
