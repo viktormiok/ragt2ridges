@@ -45,8 +45,8 @@ optLambda <- optPenaltyVAR1fused(Y,
                                  c(19, 21, 0.0024))
 
 # specify grid for contour
-lambdaA1grid <- seq(0.1, 35, length.out=20)
-lambdaA2grid <- seq(0.1, 35, length.out=20)
+lambdaA1grid = seq(0.1, 35, length.out=20)
+lambdaA2grid = seq(0.1, 35, length.out=20)
 LOOCVres1 <- loglikLOOCVcontourVAR1fused(lambdaAgrid, 
                                          lambdaFgrid, 
                                          Y, 
@@ -74,11 +74,11 @@ VAR1hat <- ridgeVAR1fused(Y=Y,
                           lambdaF=optLambda[2], 
                           lambdaP=optLambda[3]
 )
-Ahat16 <- VAR1hat$As[1:64,]
-Ahat18 <- VAR1hat$As[65:128,]
-Phat <- VAR1hat$P
-rownames(Ahat16) <- colnames(Ahat16) <- rownames(Ahat18) <- colnames(Ahat18) <-
-     rownames(Phat) <- colnames(Phat) <- rownames(hpvP53rna)
+Ahat16 = VAR1hat$As[1:64,]
+Ahat18 = VAR1hat$As[65:128,]
+Phat = VAR1hat$P
+rownames(Ahat16) = colnames(Ahat16) = rownames(Ahat18) = colnames(Ahat18) <-
+     rownames(Phat) = colnames(Phat) = rownames(hpvP53rna)
 
 # determine support for A1, A2 and O
 zerosA1 <- sparsifyVAR1(A=Ahat16,
@@ -110,8 +110,8 @@ optLambdasA1 <- optPenaltyVAR1(Y[, , 1:2],
 )
 
 # specify grid for contour
-lambdaAgrid <- seq(0.5, 2.5, length.out=20)
-lambdaPgrid <- seq(0.01, 0.03, length.out=20)
+lambdaAgrid = seq(0.5, 2.5, length.out=20)
+lambdaPgrid = seq(0.01, 0.03, length.out=20)
 LOOCVres1 <- loglikLOOCVcontourVAR1(lambdaAgrid,
                                     lambdaPgrid, 
                                     Y[, , 1:2],
@@ -122,7 +122,7 @@ LOOCVres1 <- loglikLOOCVcontourVAR1(lambdaAgrid,
 # plot contour - Figure 9a, left panel      
 setEPS()  
 postscript(file="Figure_SM3a.eps")
-op <- par(pty="s")
+op = par(pty="s")
 contour(lambdaAgrid, 
         lambdaPgrid,
         LOOCVres1$llLOOCV,
@@ -146,13 +146,13 @@ VAR1hatA16 <- ridgeVAR1(Y[,,1:2],
                         zerosA=zerosA1,
                         zerosP=zerosP
 )
-Ahat16 <- VAR1hatA16$A
-rownames(Ahat16) <- colnames(Ahat16) <- rownames(hpvP53rna)
+Ahat16 = VAR1hatA16$A
+rownames(Ahat16) = colnames(Ahat16) = rownames(hpvP53rna)
     
 # het map of the model parameters with sparsified support-Figure 10a, left panel
 setEPS()
 postscript(file="Figure_SM4a.eps")
-op <- par(pty="s")
+op = par(pty="s")
 edgeHeat(Ahat16, main="ridge re-estimate of A from HPV16 affected cell line,
     with inferred support")
 par(op)
@@ -161,7 +161,7 @@ dev.off()
 # graph of interaction among the genes - Figure 11a, top panel
 setEPS()
 postscript(file="Figure_SM5a.eps", fonts=c("serif", "Palatino","sans"))
-op <- par(pty="s")
+op = par(pty="s")
 graphVAR1(Ahat16, 
           VAR1hatA16$P,
           nNames=rownames(Ahat16), 
@@ -193,8 +193,8 @@ optLambdasA2 <- optPenaltyVAR1(Y[,,3:4],
                                zerosP=zerosP
 )
 # specify grid for contour
-lambdaAgrid <- seq(1, 2.5, length.out=20)
-lambdaPgrid <- seq(0.001, 0.006, length.out=20)
+lambdaAgrid = seq(1, 2.5, length.out=20)
+lambdaPgrid = seq(0.001, 0.006, length.out=20)
 LOOCVres1 <- loglikLOOCVcontourVAR1(lambdaAgrid,
                                     lambdaPgrid,
                                     Y[,,3:4],
@@ -205,7 +205,7 @@ LOOCVres1 <- loglikLOOCVcontourVAR1(lambdaAgrid,
 # plot contour - Figure 9b, right panel     
 setEPS()   
 postscript(file="Figure_SM3b.eps")
-op <- par(pty="s")
+op = par(pty="s")
 contour(lambdaAgrid, 
         lambdaPgrid,
         LOOCVres1$llLOOCV,
@@ -230,13 +230,13 @@ VAR1hatA18 <- ridgeVAR1(Y[,,3:4],
                         zerosA=zerosA2,
                         zerosP=zerosP
 )
-Ahat18 <- VAR1hatA18$A
-rownames(Ahat18) <- colnames(Ahat18) <- rownames(hpvP53rna)
+Ahat18 = VAR1hatA18$A
+rownames(Ahat18) = colnames(Ahat18) = rownames(hpvP53rna)
     
 # het map of the model parameters with sparsified support-Figure 10b,right panel
 setEPS()
 postscript(file="Figure_SM4b.eps")
-op <- par(pty="s")
+op = par(pty="s")
 edgeHeat(Ahat18, main="ridge re-estimate of A from HPV18 affected cell line,
     with inferred support")
 par(op)
@@ -245,7 +245,7 @@ dev.off()
 # graph of the temporal interaction among the genes - Figure 11b, bottom panel
 setEPS()
 postscript(file="Figure_SM5b.eps", fonts=c("serif", "Palatino","sans"))
-op <- par(pty="s")
+op = par(pty="s")
 graphVAR1(Ahat18,
           VAR1hatA18$P,
           nNames=rownames(Ahat18), 
@@ -293,46 +293,46 @@ graphVAR1diff <- function(sparseA1,
 	# if no covariate names are specified the columns 
 	# and row names of A are given names 1, 2, et cetera
 	if (is.null(nNames)){ 
-		nNames <- as.character(1:nrow(sparseA1)) 
+		nNames = as.character(1:nrow(sparseA1)) 
 	}
     
 	if (type=="Aonly"){
 
 
-		Ajoint <- (sparseA1 != 0) * (sparseA2 != 0)
-		sparseA1[which(Ajoint != 0)] <- 0
-		sparseA2[which(Ajoint != 0)] <- 0
-		sparseA1[Ajoint] <- 0
+		Ajoint = (sparseA1 != 0) * (sparseA2 != 0)
+		sparseA1[which(Ajoint != 0)] = 0
+		sparseA2[which(Ajoint != 0)] = 0
+		sparseA1[Ajoint] = 0
 
 		# store number of nodes
-		nNodes <- nrow(sparseA1)
+		nNodes = nrow(sparseA1)
 
 		# default node size and font size if not provided
 		if (vertex.label.cex <= 0 ){ 
-			vertex.label.cex <- max(6*(nrow(sparseA1))^(-0.8), 0.1) 
+			vertex.label.cex = max(6*(nrow(sparseA1))^(-0.8), 0.1) 
 		}
 		if (vertex.size <= 0){ 
-			vertex.size <- max(75*(nrow(sparseA1))^(-0.7), 1) 
+			vertex.size = max(75*(nrow(sparseA1))^(-0.7), 1) 
 		}
 
 		# default plot title if not provided
 		if (is.null(main)){ 
-			main <- "Cross-time relations of VAR(1) model" 
+			main = "Cross-time relations of VAR(1) model" 
 		}
 
 		# generate grid
-		grid <- rbind(cbind(-1, 1:nrow(sparseA1)), cbind(1, 1:nrow(sparseA1)))
+		grid = rbind(cbind(-1, 1:nrow(sparseA1)), cbind(1, 1:nrow(sparseA1)))
     
 		# adjacency matrix 
-		sparseA <- sparseA1 + sparseA2
-		adjMat1 <- rbind(cbind(0*sparseA1, t(sparseA1)),
+		sparseA = sparseA1 + sparseA2
+		adjMat1 = rbind(cbind(0*sparseA1, t(sparseA1)),
 		                 cbind(0*sparseA1, 0*t(sparseA1))
 		)
-		adjMat1[adjMat1 != 0] <- 1
-		adjMat2 <- rbind(cbind(0*sparseA2, t(sparseA2)), 
+		adjMat1[adjMat1 != 0] = 1
+		adjMat2 = rbind(cbind(0*sparseA2, t(sparseA2)), 
 		                 cbind(0*sparseA2, 0*t(sparseA2)))
-		adjMat2[adjMat2 != 0] <- 1
-		adjMat <- adjMat1 + adjMat2
+		adjMat2[adjMat2 != 0] = 1
+		adjMat = adjMat1 + adjMat2
 
 		# convert adjacency matrix to graph-object
 		gObj <- graph.adjacency(adjMat)
@@ -340,27 +340,27 @@ graphVAR1diff <- function(sparseA1,
 		# select pos and neg edges
 		negEdges <- which(sparseA[which(sparseA != 0)] < 0)
 		posEdges <- which(sparseA[which(sparseA != 0)] > 0)
-		igraph::E(gObj)[negEdges]$style <- 2
-		igraph::E(gObj)[posEdges]$style <- 1
+		igraph::E(gObj)[negEdges]$style = 2
+		igraph::E(gObj)[posEdges]$style = 1
 
-		adjMatContrast <- (sparseA1 != 0) - (sparseA2 != 0)
+		adjMatContrast = (sparseA1 != 0) - (sparseA2 != 0)
 		A1edges <- which(adjMatContrast[adjMatContrast != 0] > 1)
 		A2edges <- which(adjMatContrast[adjMatContrast != 0] < 1)
-		igraph::E(gObj)[negEdges]$color <- "blue"
-		igraph::E(gObj)[posEdges]$color <- "firebrick1"
+		igraph::E(gObj)[negEdges]$color = "blue"
+		igraph::E(gObj)[posEdges]$color = "firebrick1"
 
       		# size of the edges       
 		edge.widthA <- abs(t(sparseA)[which(t(sparseA) != 0, arr.ind=TRUE)]) 
 		edge.widthA  <- edge.widthA  / max(edge.widthA)
 		if (edge.width <= 0){ 
-			edge.width <- 40 * (nrow(sparseA)^(-0.8)) * edge.widthA  
+			edge.width = 40 * (nrow(sparseA)^(-0.8)) * edge.widthA  
 		} else { 
-			edge.width <- edge.width * edge.widthA  
+			edge.width = edge.width * edge.widthA  
 		}
 		if (edge.arrow.size <= 0){ 
-			edge.arrow.size <- 10 * (nrow(sparseA)^(-0.8)) * edge.widthA 
+			edge.arrow.size = 10 * (nrow(sparseA)^(-0.8)) * edge.widthA 
 		} else { 
-			edge.arrow.size <- edge.arrow.size * edge.widthA  
+			edge.arrow.size = edge.arrow.size * edge.widthA  
 		}
 
 		# make plot
@@ -441,12 +441,12 @@ graphVAR1diff <- function(sparseA1,
 ################################################################################
 
 # make differential graphs
-A16 <- VAR1hatA16$A
-P16 <- VAR1hatA16$P
-diag(P16) <- 0
-A18 <- VAR1hatA18$A
-P18 <- VAR1hatA18$P
-diag(P18) <- 0
+A16 = VAR1hatA16$A
+P16 = VAR1hatA16$P
+diag(P16) = 0
+A18 = VAR1hatA18$A
+P18 = VAR1hatA18$P
+diag(P18) = 0
 A16rm <- intersect(which(apply(A16, 
                                1,
                                function(Z){ all(Z == 0 )})),
@@ -475,22 +475,22 @@ P18rm <- intersect(which(apply(P18,
                                function(Z){ all(Z == 0)}))
 )
 idRemove <- intersect(intersect(intersect(A16rm, A18rm), P16rm), P18rm)
-Ajoint <- (A16 != 0) * (A18 != 0)
-Adiff  <- (1-(A16 != 0)) * (A18 != 0) + (A16 != 0) * (1-(A18 != 0))
-Pjoint <- (P16 != 0) * (P18 != 0)
-Pdiff  <- (1-(P16 != 0)) * (P18 != 0) + (P16 != 0) * (1-(P18 != 0))
-Aboth <- (A16 + A18)
-Aboth[Adiff != 0] <- 0
-Pboth <- P16 + P18
-rownames(Aboth) <- colnames(Aboth) <- rownames(hpvP53rna)
-rownames(Pboth) <- colnames(Pboth) <- rownames(hpvP53rna)
+Ajoint = (A16 != 0) * (A18 != 0)
+Adiff  = (1-(A16 != 0)) * (A18 != 0) + (A16 != 0) * (1-(A18 != 0))
+Pjoint = (P16 != 0) * (P18 != 0)
+Pdiff  = (1-(P16 != 0)) * (P18 != 0) + (P16 != 0) * (1-(P18 != 0))
+Aboth = (A16 + A18)
+Aboth[Adiff != 0] = 0
+Pboth = P16 + P18
+rownames(Aboth) = colnames(Aboth) = rownames(hpvP53rna)
+rownames(Pboth) = colnames(Pboth) = rownames(hpvP53rna)
 
 
 setEPS()
 postscript(file="Figure_4leftPanel.eps",
            fonts=c("serif", "Palatino","sans")
 )
-op <- par(pty="s")
+op = par(pty="s")
 graphVAR1(Aboth, 
           Pboth,
           prune=FALSE,
@@ -509,7 +509,7 @@ setEPS()
 postscript(file="Figure_4rightPanel.eps",
            fonts=c("serif", "Palatino","sans")
 )
-op <- par(pty="s")
+op = par(pty="s")
 graphVAR1diff(A16,
               A18,
               type="Aonly",
