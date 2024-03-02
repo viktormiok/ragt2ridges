@@ -41,7 +41,7 @@ In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor 
 
 ## Illustration
 
-Illustration of the time-series chain graphs underlying the various vector autoregressive models, estimated by means of ridge penalized maximum likelihood.
+Illustration of the time-series chain graphs underlying the various vector autoregressive models estimated using ridge penalized maximum likelihood.
 
 <img src="https://user-images.githubusercontent.com/22052679/124133786-79437600-da82-11eb-878c-bf6405d1b4c7.jpeg" align="top" height="540" width="670">
 
@@ -50,9 +50,9 @@ This technique aims to unravel the dynamic interrelatedness of the variates (e.g
 ### VAR(2)
 The previous technique is extended to assess the presence of dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
 ### Fused VAR(1)
-Using fused VAR(1) model differences among the groups' interaction networks may be identified. Hereto a group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
+Using the fused VAR(1) model differences among the groups' interaction networks may be identified. Hereto a group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
 ### VARX(1)
-When information on additional molecular levels (e.g., DNA copy number or microRNA gene expression) is available, those levels may be incorporated into the network. The VARX(1) model integrates time-varying covariates from other molecular levels (corresponding the “X” in VARX) into the VAR(1) model.
+When information on additional molecular levels (e.g., DNA copy number or microRNA gene expression) is available, those levels may be incorporated into the network. The VARX(1) model integrates time-varying covariates from other molecular levels (corresponding to the “X” in VARX) into the VAR(1) model.
 
 ## Installation
 
@@ -71,17 +71,17 @@ utils::vignette("ragt2ridges")
 ```
 
 ## Data
-All the data required for performing temporal integrative genomics analysis and publisch in the reference articles have been deposited in the National Center for Biotechnology Information Gene Expression Omnibus (GEO) and are accessible through the GEO Series accession numbers:
+All the data required for performing temporal integrative genomics analysis and published in the reference articles have been deposited in the National Center for Biotechnology Information Gene Expression Omnibus (GEO) and are accessible through the GEO Series accession numbers:
 | Data type     | GEO number |
 | ------------- | ------------- |
 | CGH Arrays  | [__`GSE138724`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM4117045)  |
 | mRNA Arrays  | [__`GSE138079`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138079)  |
 | miRNA Arrays  | [__`GSE78279`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE78279)  |
 
-In order to access one of the data set for instance GSE78279 you need to run the code bellow. Unpacking the data requires tar and gunzip, which should already be available on most systems.
+To access one of the data sets for instance GSE78279 you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
 
 ```
-cd ../  #To get to the main github repo folder
+cd ../  #To get to the main GitHub repo folder
 mkdir -p data/tigaR_data_analysis/
 cd data/tigaR_data_analysis/
 wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE78nnn/GSE78279/suppl/GSE78279_RAW.tar
