@@ -8,7 +8,7 @@
 
 
 # ragt2ridges
-This repository contains code, benchmarking study and illustration analysis for the R-package __`ragt2ridges`__.
+This repository contains code, benchmarking study, and illustration analysis for the R-package __`ragt2ridges`__.
 
 - [Introduction](#introduction)
 - [Code](#code)
@@ -28,16 +28,16 @@ In addition, the package offers supporting functionality for the exploitation of
 
 ## Code
 
-First, the VAR(1) model and its properties along with its associated time-series chain graph are recapitulated. With this knowledge refreshed, the ridge penalized full ML estimator of the VAR(1) model is presented. The estimator is extended to allow the incorporation of prior knowledge on the support of both temporal and contemporaneous interactions. In both cases memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. Then, several strategies (e.g. selection of temporal and contemporaneous relationships, mutual information, and path analysis) for down-stream exploitation of the estimated model are discussed. 
+First, the VAR(1) model and its properties along with its associated time-series chain graph are recapitulated. With this knowledge refreshed, the ridge penalized full ML estimator of the VAR(1) model is presented. The estimator is extended to allow the incorporation of prior knowledge in the support of both temporal and contemporaneous interactions. In both cases, memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. Then, several strategies (e.g. selection of temporal and contemporaneous relationships, mutual information, and path analysis) for downstream exploitation of the estimated model are discussed. 
 
-The R-package __`ragt2ridges`__ performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2), fused VAR(1) and VARX(1). The estimiator is extended to allow the incorporation of prior knowledge on the support of both temporal and contemporaneous interactions. In both cases memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. 
+The R-package __`ragt2ridges`__ performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2), fused VAR(1), and VARX(1). The estimator is extended to allow the incorporation of prior knowledge in the support of both temporal and contemporaneous interactions. In both cases, memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. 
 In addition, the package offers supporting functionality for the exploitation of estimated models. Among others, i) a procedure to infer the support of the non-sparse ridge estimate is implemented, a table of node-wise network summary statistics, path analysis, mutual information analysis, and impulse response analysis.
 
 ## Benchmarking 
 
-The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R-package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), by means of simulation. The two methods are compared in terms of squared Frobenius loss of the estimates, as well as, for sensitivity and specificity of their edge selection of the time-series chain graph.
+The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R-package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), employing simulation. The two methods are compared in terms of squared Frobenius loss of the estimates, as well as, for sensitivity and specificity of their edge selection of the time-series chain graph.
 
-In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor to the SCAD estimator of Abegaz and Wit (2013). With respect to the Frobenius loss the ridge estimator seems even preferable, while for more high-dimensional settings the edge selection properties of the ridge estimator not inferior to that of its SCAD counterpart.
+In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor to the SCAD estimator of Abegaz and Wit (2013). Concerning the Frobenius loss the ridge estimator seems even preferable, while for more high-dimensional settings the edge selection properties of the ridge estimator are not inferior to that of its SCAD counterpart.
 
 ## Illustration
 
