@@ -46,9 +46,9 @@ Illustration of the time-series chain graphs underlying the various vector autor
 <img src="https://user-images.githubusercontent.com/22052679/124133786-79437600-da82-11eb-878c-bf6405d1b4c7.jpeg" align="top" height="540" width="670">
 
 ### VAR(1)
-This technique aims to unravel the dynamic interrelatedness of the variates (e.g., mRNA genes) of a single molecular level (e.g., mRNA gene expression). The model thus explicates the temporal dependencies among the genes, but also captures the contemporaneous ones (through the inverse of the error covariance matrix).
+This technique aims to unravel the dynamic interrelatedness of the variates (e.g., mRNA genes) of a single molecular level (e.g., mRNA gene expression). The model thus explains the temporal dependencies among the genes, but also captures the contemporaneous ones (through the inverse of the error covariance matrix).
 ### VAR(2)
-The previous technique is extended to assess the presence of dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
+The previous technique is extended to assess dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
 ### Fused VAR(1)
 Using the fused VAR(1) model differences among the groups' interaction networks may be identified. Hereto a group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
 ### VARX(1)
