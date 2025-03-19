@@ -108,15 +108,15 @@ __`ragt2ridges`__ is distributed under the GPL-3.0 License. Please read the lice
 
 Publications related to __`ragt2ridges`__ include:
 
- - Miok, V., Wilting, S.M., van Wieringen, W.N. (2017),
+ - **Miok, V.**, Wilting, S.M., van Wieringen, W.N. (2017),
    "[Ridge estimation of the VAR(1) model and its time series chain graph from multivariate time-course omics data](http://onlinelibrary.wiley.com/doi/10.1002/bimj.201500269/abstract)".       
     *Biometrical Journal*, 59(1): 172-191.
- - Babion, I., Miok, V., Jaspers, A., Huseinovic, A., Steenbergen, R.D., van Wieringen, W.N., Wilting, S.M. (2018), "[Comprehensive molecular profiling of HPV-induced transformation over time](https://aacrjournals.org/cancerres/article/78/13_Supplement/5059/629528/Abstract-5059-Comprehensive-molecular-profiling-of)",  
+ - Babion, I., **Miok, V.**, Jaspers, A., Huseinovic, A., Steenbergen, R.D., van Wieringen, W.N., Wilting, S.M. (2018), "[Comprehensive molecular profiling of HPV-induced transformation over time](https://aacrjournals.org/cancerres/article/78/13_Supplement/5059/629528/Abstract-5059-Comprehensive-molecular-profiling-of)",  
   *Cancer Research*, 78, (13 Supplement), 5059-5059
- - Miok, V., Wilting, S.M., van Wieringen, W.N. (2019),
+ - **Miok, V.**, Wilting, S.M., van Wieringen, W.N. (2019),
    "[Ridge estimation of network models from time-course omics data](https://onlinelibrary.wiley.com/doi/abs/10.1002/bimj.201700195)",
     *Biometrical Journal*, 61(2):391-405.
- - Babion, I., Miok, V., Jaspers, A., Huseinovic, A., Steenbergen, R.D., van Wieringen, W.N., Wilting, S.M. (2020), "[Identification of Deregulated Pathways, Key Regulators, and Novel miRNA-mRNA Interactions in HPV-Mediated Transformation](https://doi.org/10.3390/cancers12030700)",    
+ - Babion, I., **Miok, V.**, Jaspers, A., Huseinovic, A., Steenbergen, R.D., van Wieringen, W.N., Wilting, S.M. (2020), "[Identification of Deregulated Pathways, Key Regulators, and Novel miRNA-mRNA Interactions in HPV-Mediated Transformation](https://doi.org/10.3390/cancers12030700)",    
  *Cancers*, 12(3), 700.
  - van Wieringen, W.N. (2018), "[ragt2ridges: Ridge Estimation of Vector Auto-Regressive (VAR) Processes](https://cran.r-project.org/web/packages/ragt2ridges/index.html)". 
     *R package*, version 0.3.2
