@@ -22,22 +22,22 @@ This repository contains code, benchmarking study, and illustration analysis for
 
 ## Introduction
 
-The R-package __`ragt2ridges`__ performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1) model (more to be added). Prior knowledge may be incorporated in the estimation through a) specification of the edges believed to be absent in the time series chain graph, and b) a shrinkage target towards which the parameter estimate is shrunken for large penalty parameter values. Estimation functionality is accompanied by methodology for penalty parameter selection.
+The R-package __`ragt2ridges`__ performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1) model (more to be added). Prior knowledge may be incorporated in the estimation through a) specification of the edges believed to be absent in the time series chain graph, and b) a shrinkage target towards which the parameter estimate is shrunken for large penalty parameter values. A methodology for penalty parameter selection accompanies estimation functionality.
 
 In addition, the package offers supporting functionality for exploiting estimated models. Among others, i) a procedure to infer the support of the non-sparse ridge estimate (and thereby of the time series chain graph) is implemented, ii) a table of node-wise network summary statistics, iii) mutual information analysis, and iv) impulse response analysis.
 
 ## Code
 
-First, the VAR(1) model, its properties, and its associated time-series chain graph are recapitulated. With this knowledge refreshed, the ridge penalized full ML estimator of the VAR(1) model is presented. The estimator is extended to allow the incorporation of prior knowledge to support both temporal and contemporaneous interactions. In both cases, memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. Then, several strategies (e.g. selection of temporal and contemporaneous relationships, mutual information, and path analysis) for downstream exploitation of the estimated model are discussed. 
+First, the VAR(1) model, its properties, and its associated time-series chain graph are recapitulated. With this knowledge refreshed, the ridge penalized full ML estimator of the VAR(1) model is presented. The estimator is extended to allow the incorporation of prior knowledge to support both temporal and contemporaneous interactions. In both cases, memory-efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. Then, several strategies (e.g. selection of temporal and contemporaneous relationships, mutual information, and path analysis) for downstream exploitation of the estimated model are discussed. 
 
-The R-package __`ragt2ridges`__ performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2), fused VAR(1), and VARX(1). The estimator is extended to allow the incorporation of prior knowledge to support both temporal and contemporaneous interactions. In both cases, memory efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. 
+The R-package __`ragt2ridges`__ performs ridge maximum likelihood estimation of vector auto-regressive processes: the VAR(1), VAR(2), fused VAR(1), and VARX(1). The estimator is extended to allow the incorporation of prior knowledge to support both temporal and contemporaneous interactions. In both cases, memory-efficient evaluation of the estimator is outlined. Cross-validation (which requires minor changes to the estimator) is described to guide the choice of the penalty parameters. 
 In addition, the package offers supporting functionality for exploiting estimated models. Among others, i) a procedure to infer the support of the non-sparse ridge estimate is implemented, a table of node-wise network summary statistics, path analysis, mutual information analysis, and impulse response analysis.
 
 ## Benchmarking 
 
 The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R-package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), employing simulation. The two methods are compared in terms of squared Frobenius loss of the estimates and for sensitivity and specificity of their edge selection of the time-series chain graph.
 
-In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor to the SCAD estimator of Abegaz and Wit (2013). Concerning the Frobenius loss the ridge estimator seems even preferable, while for more high-dimensional settings the edge selection properties of the ridge estimator are not inferior to that of its SCAD counterpart.
+In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor to the SCAD estimator of Abegaz and Wit (2013). Concerning the Frobenius loss the ridge estimator seems even preferable, while for more high-dimensional settings the edge selection properties of the ridge estimator are not inferior to those of its SCAD counterpart.
 
 ## Illustration
 
@@ -50,7 +50,7 @@ This technique aims to unravel the dynamic interrelatedness of the variates (e.g
 ### VAR(2)
 The previous technique is extended to assess dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
 ### Fused VAR(1)
-Using the fused VAR(1) model differences among the groups' interaction networks may be identified. Hereto a group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
+Using the fused VAR(1) model, differences among the groups' interaction networks may be identified. Hereto a group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
 ### VARX(1)
 When information on additional molecular levels (e.g., DNA copy number or microRNA gene expression) is available, those levels may be incorporated into the network. The VARX(1) model integrates time-varying covariates from other molecular levels (corresponding to the “X” in VARX) into the VAR(1) model.
 
