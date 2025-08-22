@@ -8,7 +8,7 @@
 
 
 # ragt2ridges
-This repository contains code, benchmarking study, and illustration analysis for the R-package __`ragt2ridges`__.
+This repository contains code, a benchmarking study, and an illustration analysis for the R-package __`ragt2ridges`__.
 
 - [Introduction](#introduction)
 - [Code](#code)
