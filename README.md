@@ -35,7 +35,7 @@ Additionally, the package provides supporting functionality for leveraging estim
 
 ## Benchmarking 
 
-The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R-package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), employing simulation. The two methods are compared in terms of squared Frobenius loss of the estimates and for sensitivity and specificity of their edge selection of the time-series chain graph.
+The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R-package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), employing simulation. The two methods are compared in terms of squared Frobenius loss of the estimates, and for the sensitivity and specificity of their edge selection of the time-series chain graph.
 
 In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor to the SCAD estimator of Abegaz and Wit (2013). Concerning the Frobenius loss, the ridge estimator seems even preferable, while for higher-dimensional settings, the edge selection properties of the ridge estimator are not inferior to those of its SCAD counterpart.
 
@@ -50,7 +50,7 @@ This technique aims to unravel the dynamic interrelatedness of the variates (e.g
 ### VAR(2)
 The previous technique is extended to assess dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
 ### Fused VAR(1)
-Using the fused VAR(1) model, differences among the groups' interaction networks may be identified. Hereto a group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
+Using the fused VAR(1) model, differences among the groups' interaction networks may be identified. A group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
 ### VARX(1)
 When information on additional molecular levels (e.g., DNA copy number or microRNA gene expression) is available, those levels may be incorporated into the network. The VARX(1) model integrates time-varying covariates from other molecular levels (corresponding to the “X” in VARX) into the VAR(1) model.
 
@@ -78,7 +78,7 @@ All the data required for performing temporal integrative genomics analysis and 
 | mRNA Arrays  | [__`GSE138079`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138079)  |
 | miRNA Arrays  | [__`GSE78279`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE78279)  |
 
-To access one of the data sets for instance GSE78279 you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
+To access one of the data sets, for instance, GSE78279, you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
 
 ```
 cd ../  #To get to the main GitHub repo folder
