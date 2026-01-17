@@ -35,7 +35,7 @@ Additionally, the package provides supporting functionality for leveraging estim
 
 ## Benchmarking 
 
-The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R-package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), employing simulation. The two methods are compared in terms of squared Frobenius loss of the estimates, and for the sensitivity and specificity of their edge selection of the time-series chain graph.
+The ridge ML estimator of the VAR(1) model is compared to its SCAD counterpart (Abegaz and Wit, 2013), which has been implemented in the R package [__`SparseTSCGM`__](https://cran.r-project.org/web/packages/SparseTSCGM/index.html), using simulation. The two methods are compared in terms of the squared Frobenius loss of the estimates, as well as their sensitivity and specificity in edge selection for the time-series chain graph.
 
 In all, the proposed ridge estimator of the VAR(1) model is a worthy competitor to the SCAD estimator of Abegaz and Wit (2013). Concerning the Frobenius loss, the ridge estimator seems even preferable, while for higher-dimensional settings, the edge selection properties of the ridge estimator are not inferior to those of its SCAD counterpart.
 
@@ -101,7 +101,7 @@ Please see the following tutorials for detailed examples of how to use __`ragt2r
 
 ## License
 
-__`ragt2ridges`__ is distributed under the GPL-3.0 License. Please read the license before using __`ragt2ridges`__, which it is distributed in the `LICENSE` file.
+__`ragt2ridges`__ is distributed under the GPL-3.0 License. Please read the license before using __`ragt2ridges`__, which is distributed in the `LICENSE` file.
 
 
 ## References
