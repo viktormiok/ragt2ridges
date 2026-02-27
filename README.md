@@ -48,7 +48,7 @@ Illustration of the time-series chain graphs underlying the various vector autor
 ### VAR(1)
 This technique aims to unravel the dynamic interrelatedness of the variates (e.g., mRNA genes) of a single molecular level (e.g., mRNA gene expression). The model thus explains the temporal dependencies among the genes and captures the contemporaneous ones (through the inverse of the error covariance matrix).
 ### VAR(2)
-The previous technique is extended to assess dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
+The previous technique is extended to assess dynamic dependencies over a longer time range than that implied by the VAR(1) model. This is done through the VAR(2) model, which includes an additional explanatory time point, that is, the two time points directly preceding the current one may both contribute to the observed variation in the latter. 
 ### Fused VAR(1)
 Using the fused VAR(1) model, differences among the groups' interaction networks may be identified. A group-wise VAR(1) model is assumed but fitted jointly to facilitate the borrowing of information when they share network features.
 ### VARX(1)
@@ -78,8 +78,7 @@ All the data required for performing temporal integrative genomics analysis and 
 | mRNA Arrays  | [__`GSE138079`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138079)  |
 | miRNA Arrays  | [__`GSE78279`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE78279)  |
 
-To access one of the data sets, for instance, GSE78279, you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
-
+To access one of the data sets, for example, GSE78279, run the code below. Extracting the files requires tar and gunzip, which are typically available on most systems.
 ```
 cd ../  #To get to the main GitHub repo folder
 mkdir -p data/tigaR_data_analysis/
